@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--splash_screen -->
+    <item name="loading_text_view" type="id"> </item>
+
+
+</resources>

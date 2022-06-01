@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RecognizeObjectInAPhoto</string>
+    <string name="welcome">Welcome!</string>
+
+    <!-- fonts -->
+    <string name="elsie_regular">fonts/elsie_swash_caps_regular.ttf</string>
 </resources>
