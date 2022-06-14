@@ -5,4 +5,7 @@
     <item name="loading_text_view" type="id"> </item>
 
 
+    <item name="capture_button" type="id"> </item>
+
+
 </resources>

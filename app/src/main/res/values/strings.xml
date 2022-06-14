@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">RecognizeObjectInAPhoto</string>
     <string name="welcome">Welcome!</string>
+    <string name="capture_button">Take Photo</string>
+    <string name="checkWork">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</string>
 
     <!-- fonts -->
     <string name="elsie_regular">fonts/elsie_swash_caps_regular.ttf</string>

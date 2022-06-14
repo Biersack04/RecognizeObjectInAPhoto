@@ -21,7 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
 
-            Intent mainIntent = new Intent(WelcomeActivity.this, MainActivity.class);
+            Intent mainIntent = new Intent(WelcomeActivity.this, PhotoActivity.class);
             WelcomeActivity.this.startActivity(mainIntent);
             WelcomeActivity.this.finish();
 

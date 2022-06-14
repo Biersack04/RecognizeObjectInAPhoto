@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="text">#8A80FF</color>
+    <color name="capture_button">#D0CCFF</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>
