@@ -3,6 +3,10 @@
     <string name="welcome">Welcome!</string>
     <string name="capture_button">Take Photo</string>
     <string name="checkWork">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</string>
+    <string name="yes">Да</string>
+    <string name="exitTheProgram">Пользователь хочет выйти из программы</string>
+    <string name="reallyQuitTheProgram">\"Вы действительно хотите покинуть программу? \"</string>
+    <string name="no">Нет</string>
 
     <!-- fonts -->
     <string name="elsie_regular">fonts/elsie_swash_caps_regular.ttf</string>

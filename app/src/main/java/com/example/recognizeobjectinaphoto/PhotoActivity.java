@@ -1,13 +1,10 @@
 package com.example.recognizeobjectinaphoto;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -37,6 +34,28 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });*/
     }
+
+    /*
+    @Override
+    public void onBackPressed() {
+        Log.i(Constants.TAG_MAIN, getString(R.string.exitTheProgram) );
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 1) {
+            fm.popBackStackImmediate();
+        } else {
+            new AlertDialog.Builder(this)
+                    .setMessage(R.string.reallyQuitTheProgram)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.yes,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    moveTaskToBack(true);
+                                    Process.killProcess(Process.myPid());
+                                    System.exit(0);
+                                }
+                            }).setNegativeButton(R.string.no, null).show();
+        }
+    }*/
 
 
 
