@@ -2,62 +2,89 @@ package com.example.recognizeobjectinaphoto;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
-public class PhotoActivity extends AppCompatActivity {
+import org.w3c.dom.Text;
+
+import java.sql.Types;
+import java.util.Locale;
+
+public class PhotoActivity extends AppCompatActivity  {
 
     private MaterialButton capture;
     private Intent cameraIntent;
     private int cameraRequestCode = 001;
+    private Bitmap imageBitmap;
+    private Classifier classifier;
+    private String identifiedType;
+    private Intent intentToType ;
+    private TextToSpeech myTTS;
+    private int MY_DATA_CHECK_CODE = 0;
+    private static final int REQUEST_TAKE_PHOTO = 1;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent,cameraRequestCode);
-        setContentView(R.layout.activity_main);
+        classifier = new Classifier(Utils.assetFilePath(this, Constants.NETWORK_FILE));
+        startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
 
-
-        capture = findViewById(R.id.capture_button);
-        capture.setTypeface(Typeface.createFromAsset(getAssets(),getString(R.string.elsie_regular)));
-/*
-        capture.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent,cameraRequestCode);
-            }
-        });*/
     }
 
-    /*
     @Override
-    public void onBackPressed() {
-        Log.i(Constants.TAG_MAIN, getString(R.string.exitTheProgram) );
-        FragmentManager fm = getSupportFragmentManager();
-        if (fm.getBackStackEntryCount() > 1) {
-            fm.popBackStackImmediate();
-        } else {
-            new AlertDialog.Builder(this)
-                    .setMessage(R.string.reallyQuitTheProgram)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.yes,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    moveTaskToBack(true);
-                                    Process.killProcess(Process.myPid());
-                                    System.exit(0);
-                                }
-                            }).setNegativeButton(R.string.no, null).show();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            imageBitmap = (Bitmap) data.getExtras().get(Constants.DATA);
+            identifiedType = classifier.predict(imageBitmap);
+            myTTS = new TextToSpeech(PhotoActivity.this, new TextToSpeech.OnInitListener() {
+
+                @Override
+                public void onInit(int status) {
+                    if (status == TextToSpeech.SUCCESS) {
+                        myTTS.isLanguageAvailable(new Locale("ru", "RUS"));
+                        ConvertTextToSpeech(identifiedType);
+                    } else
+                        Log.e("error", "Initilization Failed!");
+                }
+            });
+
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    identifiedType, Toast.LENGTH_LONG);
+            toast.show();
+            intentToType = new Intent(PhotoActivity.this, PhotoActivity.class);
+            startActivity(intentToType);
+
+
         }
-    }*/
+    }
+
+
+    private void ConvertTextToSpeech(String identifiedType) {
+        myTTS.speak(identifiedType, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    }
 
 
 
 
-}
+
+
+
+
+

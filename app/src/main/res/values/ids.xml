@@ -6,6 +6,7 @@
 
 
     <item name="capture_button" type="id"> </item>
+    <item name="sound" type="id"> </item>
 
 
 </resources>

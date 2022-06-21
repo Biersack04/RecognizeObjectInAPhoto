@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RecognizeObjectInAPhoto" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.RecognizeObjectInAPhoto" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorOnPrimary">@color/capture_button</item>
         <item name="colorPrimaryDark">@color/capture_button</item>
         <!-- Secondary brand color.
