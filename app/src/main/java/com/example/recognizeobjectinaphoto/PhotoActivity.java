@@ -1,28 +1,23 @@
 package com.example.recognizeobjectinaphoto;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Process;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
-
-import org.w3c.dom.Text;
-
-import java.sql.Types;
 import java.util.Locale;
 
 public class PhotoActivity extends AppCompatActivity  {
 
-    private MaterialButton capture;
     private Intent cameraIntent;
     private int cameraRequestCode = 001;
     private Bitmap imageBitmap;
@@ -70,12 +65,22 @@ public class PhotoActivity extends AppCompatActivity  {
             startActivity(intentToType);
 
 
+
         }
     }
 
 
     private void ConvertTextToSpeech(String identifiedType) {
         myTTS.speak(identifiedType, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        Process.killProcess(Process.myPid());
+        System.exit(0);
+
     }
 
     }
